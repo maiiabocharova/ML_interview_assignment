@@ -29,7 +29,7 @@ Structure of json file should be as follows:
 ```python
 {
     0: {
-        'code': code,
+        'code': code,  # if code does not exist, please put None here
         'name': name
     },
     1: {
