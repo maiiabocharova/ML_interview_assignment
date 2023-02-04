@@ -1,0 +1,8 @@
+version: "3.10"
+
+services:
+  fast-api:
+    build: app
+    container_name: fast-api
+    ports:
+      - "8060:80"
