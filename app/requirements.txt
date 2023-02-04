@@ -1,10 +1,6 @@
-fastapi==0.75
-gunicorn==20.1
-uvicorn==0.17.6
+fastapi==0.89.1
+gunicorn==20.1.0
+uvicorn==0.20.0
 python-multipart==0.0.5
 torch==1.12
-faiss-cpu==1.7.2
 sentence_transformers==2.2.2
-tqdm==4.64.0
-pydantic
-

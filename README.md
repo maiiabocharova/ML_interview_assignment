@@ -16,14 +16,15 @@ docker run -it -p 8060:80 maiia-ml
 ```
 By default port specified is `8060`, you can change it by specifying the port which you want to expose.
 
-## Query for most similar clusters
+## cURL command to normalize names in the file
 
 ```
 curl -F "file=@path_to_json_file" \
      -F "top_k=3" \
      http://127.0.0.1:8060/predict_on_file > output_fil.json
 ```
-Where parameter `top_k` specifies how many suggestions ML module should return
+Where parameter `top_k` specifies how many suggestions ML module should return.
+
 Structure of json file should be as follows:
 ```python
 {
@@ -49,7 +50,7 @@ Returns json:
     ...
 }
 ```
-Where distance specifies the distance in vector space from the query to the name, which is compliant to the internal company's taxonomy. The greater is this value - the more model thinks 2 names are similar.
+Where distance specifies the distance in vector space from the query to the name, which is compliant to the internal company's taxonomy. The greater this value is - the more model thinks 2 names are similar.
 
 ### Limitations
-Module is designed to work on files with ~200-300 entries. It is not designed to work on big files which have more than 5k entries (If this would be the use case - a need for faiss - library for efficient similarity search would arise)
+Module is designed to work on files with ~200-300 entries. It is not designed to work on large files which have more than 5k entries (If this would be the use case - a need for `faiss` - library for efficient similarity search would arise)

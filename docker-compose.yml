@@ -3,6 +3,6 @@ version: "3.10"
 services:
   fast-api:
     build: app
-    container_name: fast-api
+    container_name: maiia-ml
     ports:
       - "8060:80"
