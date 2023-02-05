@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Form, UploadFile
 import numpy as np
 from sentence_transformers import SentenceTransformer, util
-from resources import sbert, dst_embeddings, code2index, index2code, index2name
+from resources import sbert, dst_embeddings, index2code, index2name
 import json
 from collections import defaultdict
 
@@ -23,17 +23,17 @@ async def predict_on_file(file: UploadFile, top_k: str = Form("3")):
     similarities = util.cos_sim(query_embeddings, dst_embeddings).numpy()
 
     for source_idx, (key, values) in enumerate(json_file.items()):
-        code = values['code']
+        src_code = values['code']
         candidates_indexes = []
-        if code:
+        if src_code:
             try:
-                code = int(code.replace("-", "").ljust(8, '0'))
-                start = code - 8 * 10 ** 6
-                end = code + 8 * 10 ** 6
+                src_code = int(src_code.replace("-", "").ljust(8, '0'))
+                start = src_code - 8 * 10 ** 6
+                end = src_code + 8 * 10 ** 6
                 candidates_indexes = []
-                for code, idx in code2index.items():
-                    if start <= int(code.replace("-", "")) <= end:
-                        candidates_indexes.extend(idx)
+                for idx, dst_code in index2code.items():
+                    if start <= int(dst_code.replace("-", "")) <= end:
+                        candidates_indexes.append(idx)
             except ValueError:
                 pass
 

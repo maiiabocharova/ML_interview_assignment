@@ -21,7 +21,7 @@ By default port specified is `8060`, you can change it by specifying the port wh
 ```
 curl -F "file=@path_to_json_file" \
      -F "top_k=3" \
-     http://127.0.0.1:8060/predict_on_file > output_fil.json
+     http://127.0.0.1:8060/predict_on_file > output_file.json
 ```
 Where parameter `top_k` specifies how many suggestions ML module should return.
 
