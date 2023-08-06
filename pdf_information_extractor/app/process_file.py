@@ -7,7 +7,7 @@ from PIL import Image
 import io
 import numpy as np
 
-easyocr_reader = easyocr.Reader(['en'])
+easyocr_reader = easyocr.Reader(['en'], gpu=False)
 
 
 def process_file(api_key, pdf_doc, model):
@@ -21,7 +21,7 @@ def process_file(api_key, pdf_doc, model):
     img_num = 0
     page_blocks = []
     for block in page.get_text("blocks")[:10]:
-        # it's image
+        # it's image, so let's extract text from it
         if block[-1] == 1:
             baseImage = pdf_doc.extract_image(imgs[img_num][0])
             img = Image.open(io.BytesIO(baseImage['image']))
@@ -42,8 +42,7 @@ def process_file(api_key, pdf_doc, model):
     page_blocks.sort(key=itemgetter(1, 0))
     text = ""
     for block in page_blocks[:15]:
-        if block[-1] == 0:
-            text += block[-2] + "\n"
+        text += block[4].strip() + "\n"
     query = text.strip()
     prompt = 'Extract Product name, Manufacturer, Part Number (only if present) ' \
                     f'from the following extract of a datasheet "{query}".' \
