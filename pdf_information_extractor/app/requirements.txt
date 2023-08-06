@@ -1,0 +1,12 @@
+fastapi==0.100.1
+gunicorn==20.1.0
+uvicorn==0.20.0
+python-multipart==0.0.5
+torch==2.0
+transformers==4.28
+pymupdf==1.22.5
+openai==0.27.8
+timm==0.9.5
+Pillow==9.2.0
+easyocr==1.7.0
+numpy
