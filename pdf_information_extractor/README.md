@@ -42,4 +42,5 @@ curl -F "file=@path_to_pdf_file" \
      -F "page=1" \
      http://127.0.0.1:8060/detect_tables_structure > img.png
 ```
+Numeration starts from 0.
 
